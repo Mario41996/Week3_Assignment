@@ -1,0 +1,66 @@
+---
+title: "Week3_Assignment"
+author: "Mario Vigil"
+date: "7/26/2020"
+output: html_document
+---
+
+# Library
+
+```{r}
+library(tidyverse)
+```
+
+# Directory 
+
+```{r}
+setwd("~/Desktop/Coursera/RPrograming/Week3Assignment/")
+```
+
+# 1: Make CacheMatrix:
+
+```{r}
+
+MakeCacheMatrix <- function(x = matrix()) {
+        m <- NULL
+        set <- function(y) {
+                x <<- y
+                i <<- NULL
+        }
+        get <- function() x
+        setinverse <- function(inverse) m <<- inverse 
+        getinverse <- function() m
+        list( set = set,
+              get = get,
+              setinverse = setinverse,
+              getinverse = getinverse)
+}
+```
+
+# 2 Make cacheSolve
+
+```{r}
+cachemean <- function(x, ...) {
+        m <- x$getinverse()
+        if(!is.null(m)) {
+                message("getting cached data")
+                return(m)
+        }
+        data <- x$get()
+        m <- solve(data, ...)
+        x$setinverse(m)
+        m
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
